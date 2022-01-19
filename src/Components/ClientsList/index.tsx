@@ -1,18 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {
-  FlatList,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,Dimensions
-} from 'react-native';
+import {FlatList, StyleSheet, Text, View, Dimensions} from 'react-native';
 import ClientItem from './Client';
 import {Client} from '../../Helpers/types';
 
-const { width, height } = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
@@ -58,13 +49,9 @@ const styles = StyleSheet.create({
   item: {
     marginTop: 24,
     padding: 30,
-    // flex: 1,
     backgroundColor: '#aaa',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // flexGrow: 1,
-    // flexWrap: 'nowrap',
-    // marginHorizontal: '10%',
     alignItems: 'center',
     width: width * 0.8,
   },
