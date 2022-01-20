@@ -17,20 +17,23 @@ interface Credentials {
 
 const {height, width} = Dimensions.get('window');
 
-export default function Register() {
-  const handleRegister = async (newUser: Credentials) => {
+export default function Login() {
+  const handleLogin = async (credentials: Credentials) => {
     try {
       const users = await AsyncStorage.getItem('users');
-      const parsedUsers = users && JSON.parse(users);
+      const parsedUsers = JSON.parse(users ?? '');
       if (
         Array.isArray(parsedUsers) &&
-        !parsedUsers.filter((user: Credentials) => user.user === newUser.user)
-          .length
+        parsedUsers.filter(
+          (user: Credentials) =>
+            user.user === credentials.user &&
+            user.password === credentials.password,
+        ).length
       ) {
-        parsedUsers.push(newUser);
-        return AsyncStorage.setItem('users', JSON.stringify(parsedUsers));
+        return console.log('pass');
+      } else {
+        console.log('Invalid credentials');
       }
-      AsyncStorage.setItem('users', JSON.stringify([newUser]));
     } catch (error) {
       console.log(error);
     }
@@ -47,7 +50,7 @@ export default function Register() {
     },
   });
   const onSubmit = (data: Credentials) => {
-    handleRegister(data);
+    handleLogin(data);
   };
   return (
     <View style={styles.formContainer}>
@@ -94,7 +97,7 @@ export default function Register() {
       {errors.password && <Text>This is required.</Text>}
 
       <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
-        <Text style={styles.buttonText}>Register</Text>
+        <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
       {/* <Button title="Submit" onPress={handleSubmit(onSubmit)} /> */}
     </View>

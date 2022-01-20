@@ -10,7 +10,6 @@
 
 import React from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
-// import Clients from './Components/ClientsList';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Register from './Components/Register';
 import FlipperAsyncStorage from 'rn-flipper-async-storage-advanced';
@@ -26,7 +25,6 @@ const App = () => {
     <SafeAreaView style={backgroundStyle}>
       <FlipperAsyncStorage />
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      {/* <Clients /> */}
       <Register />
     </SafeAreaView>
   );
