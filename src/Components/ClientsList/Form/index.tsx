@@ -10,31 +10,15 @@ import {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useForm, Controller} from 'react-hook-form';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-import {Credentials, RootStackParamList} from '../../Helpers/types';
+import {RootStackParamList, Credentials, Client} from '../../../Helpers/types';
+import {createClient} from '../../../Controllers/Clients';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;
 
 const {height, width} = Dimensions.get('window');
 
-export default function Register({navigation}: Props) {
-  const handleRegister = async (newUser: Credentials) => {
-    try {
-      const users = await AsyncStorage.getItem('users');
-      const parsedUsers = users && JSON.parse(users);
-      if (
-        Array.isArray(parsedUsers) &&
-        !parsedUsers.filter((user: Credentials) => user.user === newUser.user)
-          .length
-      ) {
-        parsedUsers.push(newUser);
-        return AsyncStorage.setItem('users', JSON.stringify(parsedUsers));
-      }
-      AsyncStorage.setItem('users', JSON.stringify([newUser]));
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
+export default function Register({route, navigation}: Props) {
+  const clientId = route.params?.client;
   const {
     control,
     handleSubmit,
@@ -46,9 +30,9 @@ export default function Register({navigation}: Props) {
     },
   });
 
-  const onSubmit = (data: Credentials) => {
-    handleRegister(data);
-    navigation.navigate('Login');
+  const onSubmit = (data: Client) => {
+    createClient(data);
+    navigation.navigate('List');
   };
 
   return (

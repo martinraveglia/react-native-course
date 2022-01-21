@@ -9,24 +9,44 @@
  */
 
 import React from 'react';
-import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import {StatusBar, useColorScheme} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Register from './Components/Register';
+import MainStack from './Navigation/MainStack';
 import FlipperAsyncStorage from 'rn-flipper-async-storage-advanced';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useState} from 'react';
+import {useEffect} from 'react';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-
+  const [isSigned, setIsSigned] = useState(false);
+  useEffect(() => {
+    async () => {
+      try {
+        const isSignedAsyncStorage = await AsyncStorage.getItem('isSigned');
+        // const parsedUsers = users && JSON.parse(users);
+        isSignedAsyncStorage === 'true'
+          ? setIsSigned(true)
+          : setIsSigned(false);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+  }, []);
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
+  const MainStackProps = {
+    isSigned,
+    setIsSigned,
+  };
   return (
-    <SafeAreaView style={backgroundStyle}>
+    <SafeAreaProvider style={backgroundStyle}>
       <FlipperAsyncStorage />
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Register />
-    </SafeAreaView>
+      <MainStack {...MainStackProps} />
+    </SafeAreaProvider>
   );
 };
 

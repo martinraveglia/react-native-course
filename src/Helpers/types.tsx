@@ -1,24 +1,43 @@
 interface Client {
   id: string;
   name: string;
-  username: string;
+  // username: string | undefined;
   email: string;
-  address: {
-    street: string;
-    suite: string;
-    city: string;
-    zipcode: string;
-    geo: {
-      lat: string;
-      lng: string;
-    };
-  };
-  phone: string;
-  website: string;
-  company: {
-    name: string;
-    catchPhrase: string;
-    bs: string;
-  };
+  // address: {
+  // street: string | undefined;
+  // suite: string | undefined;
+  // city: string | undefined;
+  // zipcode: string | undefined;
+  // geo: {
+  // lat: string | undefined;
+  // lng: string | undefined;
+  // };
+  // };
+  // phone: string | undefined;
+  // website: string | undefined;
+  // company: {
+  // name: string | undefined;
+  // catchPhrase: string | undefined;
+  // bs: string | undefined;
+  // };
 }
-export type {Client};
+
+interface Credentials {
+  user: string;
+  password: string;
+}
+
+type RootStackParamList = {
+  Login:
+    | {setIsSigned: React.Dispatch<React.SetStateAction<boolean>>}
+    | undefined;
+  Register:
+    | {setIsSigned: React.Dispatch<React.SetStateAction<boolean>>}
+    | undefined;
+  List:
+    | {setIsSigned: React.Dispatch<React.SetStateAction<boolean>>}
+    | undefined;
+  Create: Client | undefined;
+};
+
+export type {Client, RootStackParamList, Credentials};

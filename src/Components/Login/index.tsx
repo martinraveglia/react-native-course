@@ -9,15 +9,14 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useForm, Controller} from 'react-hook-form';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {Credentials, RootStackParamList} from '../../Helpers/types';
 
-interface Credentials {
-  user: string;
-  password: string;
-}
+type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
 const {height, width} = Dimensions.get('window');
 
-export default function Login() {
+export default function Login({route}: Props) {
   const handleLogin = async (credentials: Credentials) => {
     try {
       const users = await AsyncStorage.getItem('users');
@@ -30,7 +29,8 @@ export default function Login() {
             user.password === credentials.password,
         ).length
       ) {
-        return console.log('pass');
+        route.params?.setIsSigned(true);
+        await AsyncStorage.setItem('isSigned', 'true');
       } else {
         console.log('Invalid credentials');
       }
@@ -55,7 +55,7 @@ export default function Login() {
   return (
     <View style={styles.formContainer}>
       <View style={styles.titleContainer}>
-        <Text style={styles.title}>Log in</Text>
+        <Text style={styles.title}>Log In</Text>
       </View>
       <Controller
         control={control}

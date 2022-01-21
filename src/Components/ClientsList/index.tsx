@@ -1,17 +1,21 @@
 import React, {useEffect, useState} from 'react';
 import {FlatList, StyleSheet, Text, View, Dimensions} from 'react-native';
-import ClientItem from './Client';
+import {useIsFocused} from '@react-navigation/native';
+import ClientItem from './ClientItem';
 import {Client} from '../../Helpers/types';
+import {getClients} from '../../Controllers/Clients';
 
 const {width} = Dimensions.get('window');
 
 const Clients = () => {
   const [clients, setClients] = useState<Client[]>([]);
+
+  const isFocused = useIsFocused();
+
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then(response => response.json())
-      .then(responseJson => setClients(responseJson));
-  }, []);
+    async () => setClients(await getClients());
+  }, [isFocused]);
+
   return (
     <FlatList
       keyExtractor={item => item?.id}
