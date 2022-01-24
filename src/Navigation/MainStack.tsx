@@ -19,7 +19,7 @@ interface MainStackProps {
 export default (props: MainStackProps) => {
   const setIsSigned = props.setIsSigned;
   return (
-    <NavigationContainer onReady={() => RNBootSplash.hide({fade: true})}>
+    <NavigationContainer>
       {!props.isSigned ? (
         <Stack.Navigator
           screenOptions={({navigation}) => {

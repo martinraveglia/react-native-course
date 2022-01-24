@@ -1,11 +1,10 @@
-
 import com.facebook.react.ReactActivity;
-import com.facebook.react.ReactActivityDelegate; // <- add this necessary import
-import com.zoontek.rnbootsplash.RNBootSplash; // <- add this necessary import
+import com.facebook.react.ReactActivityDelegate;
+import com.zoontek.rnbootsplash.RNBootSplash;
 
 public class MainActivity extends ReactActivity {
 
-  // ...
+  // …
 
   @Override
   protected ReactActivityDelegate createReactActivityDelegate() {
@@ -13,10 +12,9 @@ public class MainActivity extends ReactActivity {
 
       @Override
       protected void loadApp(String appKey) {
-        RNBootSplash.init(MainActivity.this); // <- initialize the splash screen
+        RNBootSplash.init(MainActivity.this);
         super.loadApp(appKey);
       }
     };
   }
 }
-
