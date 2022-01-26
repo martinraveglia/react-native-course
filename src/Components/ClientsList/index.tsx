@@ -24,12 +24,14 @@ const Clients = ({navigation}: Props) => {
     return (
       <View>
         <Text style={styles.title}>Client List</Text>
-        <TouchableOpacity
-          style={styles.button}
+        <AntDesign.Button
+          name="adduser"
+          size={20}
+          iconStyle={{marginLeft: 5}}
+          borderRadius={50}
           onPress={() => navigation.navigate('ClientForm')}>
-          <AntDesign name="home" size={30} />
-          <Text style={styles.buttonText}>Add</Text>
-        </TouchableOpacity>
+          <Text style={styles.buttonText}>New Client</Text>
+        </AntDesign.Button>
       </View>
     );
   };
@@ -80,19 +82,22 @@ const styles = StyleSheet.create({
   },
   button: {
     marginVertical: 20,
-    marginHorizontal: 90,
-    padding: 20,
+    marginHorizontal: 70,
+    padding: 10,
     borderRadius: 50,
     backgroundColor: '#007ACC',
   },
   buttonText: {
+    verticalAlign: 'center',
     textAlign: 'center',
     color: 'white',
   },
   title: {
+    textAlign: 'center',
     fontSize: 32,
     marginTop: 20,
-    fontWeight: 'bold',
+    marginBottom: 10,
+    // fontWeight: 'bold',
   },
   item: {
     marginTop: 24,
