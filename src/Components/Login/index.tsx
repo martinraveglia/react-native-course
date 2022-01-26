@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useForm, Controller} from 'react-hook-form';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {Credentials, RootStackParamList} from '../../Helpers/types';
+import Toast from 'react-native-simple-toast';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Login'>;
 
@@ -32,7 +33,7 @@ export default function Login({route}: Props) {
         route.params?.setIsSigned(true);
         await AsyncStorage.setItem('isSigned', 'true');
       } else {
-        console.log('Invalid credentials');
+        Toast.show('Invalid credentials');
       }
     } catch (error) {
       console.log(error);
