@@ -3,10 +3,11 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {Client, RootStackParamList} from '../../../Helpers/types';
 import FA5 from 'react-native-vector-icons/FontAwesome5';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {deleteClient} from '../../../Controllers/Clients';
 
 type Navigation = NativeStackScreenProps<
   RootStackParamList,
-  'List'
+  'Clients'
 >['navigation'];
 interface Props {
   style: object;
@@ -26,7 +27,8 @@ const ClientItem = (props: Props) => {
           style={styles.button}
           onPress={() =>
             props.navigation.navigate('ClientForm', {client: props.item})
-          }>
+          }
+          onLongPress={() => deleteClient(props.item.id)}>
           <FA5 name="user-edit" size={25} />
         </TouchableOpacity>
       </View>

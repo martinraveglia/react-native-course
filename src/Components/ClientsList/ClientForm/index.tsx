@@ -2,8 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import styles from './styles';
 import {useForm, Controller} from 'react-hook-form';
-import {Client} from '../../../Helpers/types';
-import {RootStackParamList} from '../../../Helpers/types';
+import {Client, RootStackParamList} from '../../../Helpers/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 // import {useIsFocused} from '@react-navigation/native';
 import {ClientContext} from '../../../context/ClientContext';
@@ -24,19 +23,7 @@ export default function ClientForm({route, navigation}: Props) {
   useEffect(() => {
     reset({name: route.params?.client.name, email: route.params?.client.email});
     setId(route.params?.client.id ?? -1);
-  }, [reset, route.params?.client, route.params?.client.id]);
-
-  // const {
-  //   control,
-  //   handleSubmit,
-  //   // formState: {errors},
-  // } = useForm({
-  //   defaultValues: {
-  //     id: client?.id ?? -1,
-  //     name: client?.name ?? '',
-  //     email: client?.email ?? '',
-  //   },
-  // });
+  }, [reset, route.params?.client, route.params?.client?.id]);
 
   const onSubmit = (data: Client) => {
     console.log(route.params);
@@ -44,7 +31,7 @@ export default function ClientForm({route, navigation}: Props) {
       ? clientContext?.updateClient({...data, id})
       : clientContext?.addClient(data);
     navigation.setParams(undefined);
-    navigation.navigate('List');
+    navigation.navigate('Clients');
   };
 
   return (

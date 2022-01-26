@@ -16,10 +16,11 @@ type RootStackParamList = {
   Register:
     | {setIsSigned: React.Dispatch<React.SetStateAction<boolean>>}
     | undefined;
-  List:
+  Clients:
     | {setIsSigned: React.Dispatch<React.SetStateAction<boolean>>}
     | undefined;
-  Welcome: {client: Client} | undefined;
+  Welcome: undefined;
+  ClientForm: {client: Client} | undefined;
 };
 
 interface iClientContext {

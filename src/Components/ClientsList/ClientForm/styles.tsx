@@ -1,9 +1,9 @@
-import {StyleSheet} from 'react-native';
-
+import {Dimensions, StyleSheet} from 'react-native';
+const {height} = Dimensions.get('window');
 const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: 30,
-    paddingVertical: 0,
+    height: height * 0.8,
     justifyContent: 'center',
     alignContent: 'center',
   },

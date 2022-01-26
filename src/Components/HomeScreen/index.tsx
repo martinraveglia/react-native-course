@@ -15,7 +15,7 @@ export default () => {
         source={require('../../Assets/Images/bootsplash_logo.png')}
       />
       <Text style={styles.title}>Welcome!</Text>
-      <ActivityIndicator size={50} color="#00b2ba" />
+      <ActivityIndicator size={'large'} color="#00b2ba" />
     </View>
   );
 };
@@ -27,12 +27,12 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
   },
-  logo: {width: 'content'},
+  logo: {width: 'auto'},
   title: {
     textAlign: 'center',
-    fontSize: 32,
-    marginTop: 20,
-    marginBottom: 10,
+    fontSize: 40,
+    marginTop: 50,
+    marginBottom: 100,
     // fontWeight: 'bold',
   },
 });

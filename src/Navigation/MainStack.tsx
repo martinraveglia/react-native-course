@@ -20,41 +20,6 @@ interface MainStackProps {
   setIsSigned: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const screenOptionStyle = {
-  headerShown: false,
-  headerTitle: '',
-  contentStyle: {
-    backgroundColor: 'white',
-  },
-};
-
-const MainStackNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Home" component={HomeScreen} />
-    </Stack.Navigator>
-  );
-};
-
-const ClientStackNavigator = () => {
-  return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Clients" component={Clients} />
-      <Stack.Screen
-        name="ClientForm"
-        component={ClientForm}
-        options={{
-          headerShown: true,
-          headerTitle: '',
-          contentStyle: {
-            backgroundColor: 'white',
-          },
-        }}
-      />
-    </Stack.Navigator>
-  );
-};
-
 export default (props: MainStackProps) => {
   const setIsSigned = props.setIsSigned;
   return (
@@ -87,6 +52,7 @@ export default (props: MainStackProps) => {
         </Stack.Navigator>
       ) : (
         <Tab.Navigator
+          backBehavior="history"
           screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
               if (route.name === 'HomeScreen') {
@@ -110,7 +76,7 @@ export default (props: MainStackProps) => {
           })}>
           <Tab.Screen
             name="Welcome"
-            component={MainStackNavigator}
+            component={HomeScreen}
             options={{
               tabBarLabel: 'Welcome',
               tabBarIcon: ({size, color}) => (
@@ -119,14 +85,34 @@ export default (props: MainStackProps) => {
             }}
           />
           <Tab.Screen
-            name="List"
-            component={ClientStackNavigator}
+            name="Clients"
+            component={Clients}
             options={{
               tabBarLabel: 'List',
               tabBarIcon: ({color, size}) => (
                 <FontAwesome name="list" size={size} color={color} />
               ),
             }}
+          />
+          <Tab.Screen
+            name="ClientForm"
+            component={ClientForm}
+            options={({navigation}) => ({
+              tabBarButton: () => null,
+              tabBarStyle: {display: 'none'},
+              headerLeft: () => (
+                <Ionicons.Button
+                  underlayColor="transparent"
+                  style={{paddingRight: 40}}
+                  onPress={() => navigation.goBack(null)}
+                  name="chevron-back-sharp"
+                  size={20}
+                  backgroundColor={'transparent'}
+                  color={'#007ACC'}>
+                  Go Back
+                </Ionicons.Button>
+              ),
+            })}
           />
         </Tab.Navigator>
       )}

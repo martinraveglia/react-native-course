@@ -13,7 +13,7 @@ import {ClientContext} from '../../context/ClientContext';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'List'>;
+type Props = NativeStackScreenProps<RootStackParamList, 'Clients'>;
 
 const {width} = Dimensions.get('window');
 
@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#007ACC',
   },
   buttonText: {
-    verticalAlign: 'center',
     textAlign: 'center',
     color: 'white',
   },
