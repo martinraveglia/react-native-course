@@ -1,3 +1,4 @@
 {
-  "cSpell.words": ["bootsplash"]
+  "cSpell.words": ["bootsplash"],
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

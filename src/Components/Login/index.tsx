@@ -20,7 +20,7 @@ export default function Login({route}: Props) {
   const handleLogin = async (credentials: Credentials) => {
     try {
       const users = await AsyncStorage.getItem('users');
-      const parsedUsers = JSON.parse(users ?? '');
+      const parsedUsers = users && JSON.parse(users);
       if (
         Array.isArray(parsedUsers) &&
         parsedUsers.filter(
@@ -70,12 +70,13 @@ export default function Login({route}: Props) {
               style={styles.textInput}
               value={value}
               placeholder="Username"
+              testID="user-input"
             />
           </View>
         )}
         name="user"
       />
-      {errors.user && <Text>This is required.</Text>}
+      {errors.user && <Text>User is required.</Text>}
       <Controller
         control={control}
         rules={{
@@ -89,14 +90,18 @@ export default function Login({route}: Props) {
               style={styles.textInput}
               value={value}
               placeholder="Password"
+              testID="password-input"
             />
           </View>
         )}
         name="password"
       />
-      {errors.password && <Text>This is required.</Text>}
+      {errors.password && <Text>Password is required.</Text>}
 
-      <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
+      <TouchableOpacity
+        style={styles.button}
+        testID="submit-button"
+        onPress={handleSubmit(onSubmit)}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
       {/* <Button title="Submit" onPress={handleSubmit(onSubmit)} /> */}

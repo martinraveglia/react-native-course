@@ -17,6 +17,7 @@ import {SafeAreaProvider} from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useState} from 'react';
 import {useEffect} from 'react';
+import ClientContextProvider from './context/ClientContext';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -43,9 +44,11 @@ const App = () => {
   };
   return (
     <SafeAreaProvider style={backgroundStyle}>
-      <FlipperAsyncStorage />
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <MainStack {...MainStackProps} />
+      <ClientContextProvider>
+        <FlipperAsyncStorage />
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <MainStack {...MainStackProps} />
+      </ClientContextProvider>
     </SafeAreaProvider>
   );
 };

@@ -1,25 +1,7 @@
 interface Client {
-  id: string;
+  id: number;
   name: string;
-  // username: string | undefined;
   email: string;
-  // address: {
-  // street: string | undefined;
-  // suite: string | undefined;
-  // city: string | undefined;
-  // zipcode: string | undefined;
-  // geo: {
-  // lat: string | undefined;
-  // lng: string | undefined;
-  // };
-  // };
-  // phone: string | undefined;
-  // website: string | undefined;
-  // company: {
-  // name: string | undefined;
-  // catchPhrase: string | undefined;
-  // bs: string | undefined;
-  // };
 }
 
 interface Credentials {
@@ -37,7 +19,14 @@ type RootStackParamList = {
   List:
     | {setIsSigned: React.Dispatch<React.SetStateAction<boolean>>}
     | undefined;
-  Create: Client | undefined;
+  ClientForm: {client: Client} | undefined;
 };
 
-export type {Client, RootStackParamList, Credentials};
+interface iClientContext {
+  clients: Client[] | null;
+  deleteClient: (id: number | undefined) => void;
+  addClient: (client: Client) => void;
+  updateClient: (client: Client) => void;
+}
+
+export type {Client, RootStackParamList, Credentials, iClientContext};

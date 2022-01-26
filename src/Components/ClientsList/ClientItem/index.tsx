@@ -1,10 +1,17 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
-import {Client} from '../../../Helpers/types';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {Client, RootStackParamList} from '../../../Helpers/types';
+import FA5 from 'react-native-vector-icons/FontAwesome5';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
+type Navigation = NativeStackScreenProps<
+  RootStackParamList,
+  'List'
+>['navigation'];
 interface Props {
   style: object;
   item: Client;
+  navigation: Navigation;
 }
 const ClientItem = (props: Props) => {
   return (
@@ -13,6 +20,15 @@ const ClientItem = (props: Props) => {
       <View style={styles.section}>
         <Text>{props.item.name}</Text>
         <Text>{props.item.email}</Text>
+      </View>
+      <View>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() =>
+            props.navigation.navigate('ClientForm', {client: props.item})
+          }>
+          <FA5 name="user-edit" size={25} />
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -33,6 +49,9 @@ const styles = StyleSheet.create({
   section: {
     // flexDirection: 'column',
     alignItems: 'flex-start',
+  },
+  button: {
+    padding: 10,
   },
   item: {
     marginTop: 24,
