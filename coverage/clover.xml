@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1643208066885" clover="3.2.0">
-  <project timestamp="1643208066885" name="All files">
+<coverage generated="1643289628959" clover="3.2.0">
+  <project timestamp="1643289628959" name="All files">
     <metrics statements="37" coveredstatements="20" conditionals="22" coveredconditionals="12" methods="12" coveredmethods="6" elements="71" coveredelements="38" complexity="0" loc="37" ncloc="37" packages="2" files="2" classes="2"/>
     <package name="Login">
       <metrics statements="18" coveredstatements="18" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
       <file name="index.tsx" path="/Users/radiumrocket27/projects/react-native-course/src/Components/Login/index.tsx">
         <metrics statements="18" coveredstatements="18" conditionals="12" coveredconditionals="12" methods="6" coveredmethods="6"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="20" count="18" type="stmt"/>
-        <line num="21" count="3" type="stmt"/>
+        <line num="18" count="1" type="stmt"/>
+        <line num="21" count="18" type="stmt"/>
         <line num="22" count="3" type="stmt"/>
-        <line num="23" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="24" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="28" count="2" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="1" type="stmt"/>
+        <line num="23" count="3" type="stmt"/>
+        <line num="24" count="3" type="cond" truecount="2" falsecount="0"/>
+        <line num="25" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="29" count="2" type="cond" truecount="2" falsecount="0"/>
         <line num="33" count="1" type="stmt"/>
-        <line num="35" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="46" count="18" type="stmt"/>
-        <line num="52" count="18" type="stmt"/>
-        <line num="53" count="3" type="stmt"/>
-        <line num="55" count="18" type="stmt"/>
-        <line num="66" count="31" type="stmt"/>
-        <line num="86" count="31" type="stmt"/>
-        <line num="112" count="1" type="stmt"/>
+        <line num="34" count="1" type="stmt"/>
+        <line num="36" count="1" type="stmt"/>
+        <line num="39" count="2" type="stmt"/>
+        <line num="47" count="18" type="stmt"/>
+        <line num="53" count="18" type="stmt"/>
+        <line num="54" count="3" type="stmt"/>
+        <line num="56" count="18" type="stmt"/>
+        <line num="67" count="31" type="stmt"/>
+        <line num="88" count="31" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
       </file>
     </package>
     <package name="Register">
@@ -47,8 +47,8 @@
         <line num="51" count="0" type="stmt"/>
         <line num="54" count="0" type="stmt"/>
         <line num="65" count="0" type="stmt"/>
-        <line num="84" count="0" type="stmt"/>
-        <line num="106" count="1" type="stmt"/>
+        <line num="85" count="0" type="stmt"/>
+        <line num="107" count="1" type="stmt"/>
       </file>
     </package>
   </project>

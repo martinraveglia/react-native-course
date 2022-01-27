@@ -67,6 +67,7 @@ export default function Login({route}: Props) {
           <View style={styles.textInputsContainer}>
             <TextInput
               onBlur={onBlur}
+              autoCapitalize="none"
               onChangeText={onChange}
               style={styles.textInput}
               value={value}
@@ -92,6 +93,7 @@ export default function Login({route}: Props) {
               value={value}
               placeholder="Password"
               testID="password-input"
+              secureTextEntry={true}
             />
           </View>
         )}
@@ -105,7 +107,6 @@ export default function Login({route}: Props) {
         onPress={handleSubmit(onSubmit)}>
         <Text style={styles.buttonText}>Submit</Text>
       </TouchableOpacity>
-      {/* <Button title="Submit" onPress={handleSubmit(onSubmit)} /> */}
     </View>
   );
 }

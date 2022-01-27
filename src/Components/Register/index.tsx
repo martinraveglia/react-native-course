@@ -66,6 +66,7 @@ export default function Register({navigation}: Props) {
             <TextInput
               onBlur={onBlur}
               onChangeText={onChange}
+              autoCapitalize="none"
               style={styles.textInput}
               value={value}
               placeholder="Username"
@@ -85,6 +86,7 @@ export default function Register({navigation}: Props) {
             <TextInput
               onBlur={onBlur}
               onChangeText={onChange}
+              autoCapitalize="none"
               style={styles.textInput}
               value={value}
               placeholder="Password"
@@ -98,7 +100,6 @@ export default function Register({navigation}: Props) {
       <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
-      {/* <Button title="Submit" onPress={handleSubmit(onSubmit)} /> */}
     </View>
   );
 }

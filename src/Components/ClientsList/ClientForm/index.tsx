@@ -1,7 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import {Text, View, TextInput, TouchableOpacity} from 'react-native';
 import styles from './styles';
-import {useForm, Controller} from 'react-hook-form';
+import {useForm, Controller, SubmitHandler, Field} from 'react-hook-form';
 import {Client, RootStackParamList} from '../../../Helpers/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 // import {useIsFocused} from '@react-navigation/native';
@@ -20,13 +20,20 @@ export default function ClientForm({route, navigation}: Props) {
     formState: {errors},
   } = useForm();
 
+  type FieldValues = Record<string, any>;
+
+  type FormValues = {
+    name: string;
+    email: string;
+    id: number;
+  };
+
   useEffect(() => {
     reset({name: route.params?.client.name, email: route.params?.client.email});
     setId(route.params?.client.id ?? -1);
   }, [reset, route.params?.client, route.params?.client?.id]);
 
-  const onSubmit = (data: Client) => {
-    console.log(route.params);
+  const onSubmit: SubmitHandler<FormValues> = (data: Client) => {
     route.params?.client
       ? clientContext?.updateClient({...data, id})
       : clientContext?.addClient(data);
@@ -40,7 +47,12 @@ export default function ClientForm({route, navigation}: Props) {
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: {value: true, message: 'The Name is required.'},
+          minLength: {value: 5, message: 'At least 5 characters.'},
+          pattern: {
+            value: /^[a-záéíóúñ]+( +[a-záéíóúñ]+)+$/i,
+            message: 'At least 6 letters and space in between.',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <View style={styles.textInputsContainer}>
@@ -56,10 +68,15 @@ export default function ClientForm({route, navigation}: Props) {
         )}
         name="name"
       />
+      {errors.name && <Text>{errors.name.message}</Text>}
       <Controller
         control={control}
         rules={{
-          required: true,
+          required: {value: true, message: 'The Email is required'},
+          pattern: {
+            value: /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/,
+            message: 'Should be a valid Email address',
+          },
         }}
         render={({field: {onChange, onBlur, value}}) => (
           <View style={styles.textInputsContainer}>
@@ -75,6 +92,7 @@ export default function ClientForm({route, navigation}: Props) {
         )}
         name="email"
       />
+      {errors.email && <Text>{errors.email.message}</Text>}
       <TouchableOpacity style={styles.button} onPress={handleSubmit(onSubmit)}>
         <Text style={styles.buttonText}>
           {route.params?.client ? 'Update' : 'Create'}
