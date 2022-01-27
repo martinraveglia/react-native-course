@@ -4,13 +4,13 @@ import styles from './styles';
 import {useForm, Controller, SubmitHandler, Field} from 'react-hook-form';
 import {Client, RootStackParamList} from '../../../Helpers/types';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-// import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused} from '@react-navigation/native';
 import {ClientContext} from '../../../context/ClientContext';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'ClientForm'>;
 
 export default function ClientForm({route, navigation}: Props) {
-  // const {reset, setValue} = useForm();
+  const isFocused = useIsFocused();
   const [id, setId] = useState<number>(-1);
   const clientContext = useContext(ClientContext);
   const {
@@ -18,22 +18,24 @@ export default function ClientForm({route, navigation}: Props) {
     handleSubmit,
     control,
     formState: {errors},
-  } = useForm();
-
-  type FieldValues = Record<string, any>;
-
-  type FormValues = {
-    name: string;
-    email: string;
-    id: number;
-  };
+  } = useForm<Client>();
 
   useEffect(() => {
-    reset({name: route.params?.client.name, email: route.params?.client.email});
-    setId(route.params?.client.id ?? -1);
+    if (!isFocused) {
+      reset({name: undefined, email: undefined});
+      navigation.setParams({client: undefined});
+    }
+  }, [isFocused]);
+
+  useEffect(() => {
+    reset({
+      name: route.params?.client?.name,
+      email: route.params?.client?.email,
+    });
+    setId(route.params?.client?.id ?? -1);
   }, [reset, route.params?.client, route.params?.client?.id]);
 
-  const onSubmit: SubmitHandler<FormValues> = (data: Client) => {
+  const onSubmit = (data: Client) => {
     route.params?.client
       ? clientContext?.updateClient({...data, id})
       : clientContext?.addClient(data);

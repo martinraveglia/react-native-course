@@ -42,26 +42,17 @@ const Clients = ({navigation}: Props) => {
       style={styles.wrapper}
       contentContainerStyle={styles.contentContainer}
       renderItem={({item}) => (
-        <>
-          <TouchableOpacity
-            onLongPress={() => clientContext?.deleteClient(+item?.id)}
-            onPress={() =>
-              navigation.navigate('ClientForm', {
-                client: item,
-              })
-            }>
-            <ClientItem
-              item={item}
-              style={styles.item}
-              navigation={navigation}
-            />
-          </TouchableOpacity>
-        </>
+        <TouchableOpacity
+          onLongPress={() => clientContext?.deleteClient(+item?.id)}
+          onPress={() =>
+            navigation.navigate('ClientForm', {
+              client: item,
+            })
+          }>
+          <ClientItem item={item} style={styles.item} navigation={navigation} />
+        </TouchableOpacity>
       )}
       ListHeaderComponent={Header}
-      ItemSeparatorComponent={() => (
-        <View style={{height: 1, width: '100%', backgroundColor: 'pink'}} />
-      )}
     />
   );
 };
@@ -70,11 +61,7 @@ export default Clients;
 
 const styles = StyleSheet.create({
   wrapper: {
-    // marginTop: 32,
-    // paddingHorizontal: 30,
-    // backgroundColor: 'red',
     width,
-    // height: height *1,
   },
   contentContainer: {
     alignItems: 'center',
@@ -96,12 +83,16 @@ const styles = StyleSheet.create({
     fontSize: 32,
     marginTop: 20,
     marginBottom: 10,
-    // fontWeight: 'bold',
   },
   item: {
     marginTop: 24,
     padding: 30,
-    backgroundColor: '#aaa',
+    paddingBottom: 20,
+    paddingTop: 20,
+    borderRadius: 40,
+    borderWidth: 2,
+    borderColor: '#007ACC99',
+    backgroundColor: '#aaa3',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',

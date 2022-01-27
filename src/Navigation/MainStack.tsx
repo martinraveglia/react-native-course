@@ -121,13 +121,6 @@ export default (props: MainStackProps) => {
 };
 
 const styles = StyleSheet.create({
-  // formContainer: {
-  //   marginVertical: height * 0.2,
-  //   paddingHorizontal: 30,
-  //   paddingVertical: 30,
-  //   justifyContent: 'center',
-  //   alignContent: 'center',
-  // },
   container: {
     alignContent: 'center',
     justifyContent: 'center',

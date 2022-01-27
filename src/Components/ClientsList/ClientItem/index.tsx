@@ -19,8 +19,8 @@ const ClientItem = (props: Props) => {
     <View style={props.style}>
       <Text style={styles.id}>{props.item.id}</Text>
       <View style={styles.section}>
-        <Text>{props.item.name}</Text>
-        <Text>{props.item.email}</Text>
+        <Text>Name: {props.item.name}</Text>
+        <Text>Email: {props.item.email}</Text>
       </View>
       <View>
         <TouchableOpacity
@@ -51,14 +51,17 @@ const styles = StyleSheet.create({
   section: {
     // flexDirection: 'column',
     alignItems: 'flex-start',
+    paddingLeft: 15,
+    marginRight: 'auto',
   },
   button: {
     padding: 10,
+    paddingRight: 0,
   },
   item: {
     marginTop: 24,
     padding: 30,
-    backgroundColor: '#aaa',
+    backgroundColor: '#AAA',
     justifyContent: 'space-between',
     flexWrap: 'wrap',
     fontSize: 14,
