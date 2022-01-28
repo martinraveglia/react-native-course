@@ -22,11 +22,12 @@ import ClientContextProvider from './context/ClientContext';
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const [isSigned, setIsSigned] = useState(false);
+  const [firstScan, setFirstScan] = useState(true);
   useEffect(() => {
-    async () => {
+    setFirstScan(false);
+    const asyncFunction = async () => {
       try {
         const isSignedAsyncStorage = await AsyncStorage.getItem('isSigned');
-        // const parsedUsers = users && JSON.parse(users);
         isSignedAsyncStorage === 'true'
           ? setIsSigned(true)
           : setIsSigned(false);
@@ -34,7 +35,11 @@ const App = () => {
         console.log(error);
       }
     };
+    asyncFunction();
   }, []);
+  useEffect(() => {
+    if (!firstScan) AsyncStorage.setItem('isSigned', isSigned.toString());
+  }, [isSigned]);
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
